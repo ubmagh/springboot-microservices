@@ -1,0 +1,32 @@
+version: '3.1'
+
+services:
+
+  eureka-server:
+    image: scoma/spring-ms-tp1_eureka
+    ports:
+      - 8761:8761
+
+  customer-service:
+    image: scoma/spring-ms-tp1_customer-service
+    ports:
+      - 8082:8082
+    depends_on:
+      - eureka-server
+
+  billing-service:
+    image: scoma/spring-ms-tp1_billing-service
+    ports:
+      - 8081:8081
+    depends_on:
+      - customer-service
+
+  gateway-service:
+    image: scoma/spring-ms-tp1_gateway
+    ports:
+      - 8888:8888
+    depends_on:
+      - billing-service
+      # - customer-service
+    
+    
