@@ -4,6 +4,7 @@ services:
 
   eureka-server:
     image: scoma/spring-ms-tp1_eureka
+    # network_mode: host # available only on linux
     ports:
       - 8761:8761
 

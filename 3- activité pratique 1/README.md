@@ -8,4 +8,8 @@
 ⭐ Exceptions management and returning Http codes
 
 
+## network issue
+
 > ⚠ Dockerized everything, but still cannot establish communication between running containers (static ports & adresses), maybe this is why i need a configuration provider service
+
+> i've tried to run containers with host network mode `network_mode: host` but this is only available in linux hosts https://docs.docker.com/network/host/
