@@ -16,22 +16,22 @@
             <td> 1 </td>
             <td> microservice example with rest api endpoints </td>
             <td>
-                [👉](./1-rest-microservice-app/)
+                <a href="./1-rest-microservice-app/">👉</a> 
             </td>
         </tr>
         <tr>
             <td> 2 </td>
             <td> microservice example with GraphQL api endpoints </td>
             <td>
-                [👉](./2-graphQl-microservice-app/)
+                <a href="./2-graphQl-microservice-app/">👉</a> 
             </td>
         </tr>
         <tr>
             <td> 3 </td>
-            <td> connecting microservices with eureka discovery, and linking them to a gateway 
+            <td> connecting synchronously microservices with eureka, and proxying them with a gateway 
             </td>
             <td>
-                [👉](./3-%20activit%C3%A9%20pratique%201/)
+                <a href="./3-%20activit%C3%A9%20pratique%201/">👉</a> 
             </td>
         </tr>
     </tbody>

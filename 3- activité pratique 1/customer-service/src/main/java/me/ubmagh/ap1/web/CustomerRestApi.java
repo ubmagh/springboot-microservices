@@ -6,6 +6,7 @@ import me.ubmagh.ap1.dtos.responses.CustomerResponseDTO;
 import me.ubmagh.ap1.exceptions.CustomerNotFoundException;
 import me.ubmagh.ap1.services.CustomerService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -23,7 +24,7 @@ public class CustomerRestApi {
     }
 
     @PostMapping("/customers")
-    public CustomerResponseDTO saveCustomer(CustomerRequestDTO customerRequestDTO){
+    public CustomerResponseDTO saveCustomer(CustomerRequestDTO customerRequestDTO) {
         return this.customerService.saveCustomer(customerRequestDTO);
     }
 
@@ -33,7 +34,7 @@ public class CustomerRestApi {
         try{
             customer = this.customerService.getCustomer(id);
         }catch ( CustomerNotFoundException exc){
-            throw new ResponseStatusException( HttpStatus.NOT_FOUND, "Customer with id: "+exc.getMessage()+" was not found !" );
+            throw new ResponseStatusException( HttpStatus.NOT_FOUND, "Customer with id: "+exc.getCustomerId()+" was not found !" );
         }
         return customer;
     }
@@ -44,7 +45,7 @@ public class CustomerRestApi {
         try{
             customer = this.customerService.updateCustomer( id, customerRequestDTO);
         }catch ( CustomerNotFoundException exc){
-            throw new ResponseStatusException( HttpStatus.NOT_FOUND, "Customer with id: "+exc.getMessage()+" was not found !" );
+            throw new ResponseStatusException( HttpStatus.NOT_FOUND, "Customer with id: "+exc.getCustomerId()+" was not found !" );
         }
         return customer;
     }
@@ -54,9 +55,14 @@ public class CustomerRestApi {
         try{
             this.customerService.deleteCustomer( id);
         }catch ( CustomerNotFoundException exc){
-            throw new ResponseStatusException( HttpStatus.NOT_FOUND, "Customer with id: "+exc.getMessage()+" was not found !" );
+            throw new ResponseStatusException( HttpStatus.NOT_FOUND, "Customer with id: "+exc.getCustomerId()+" was not found !" );
         }
         return id;
+    }
+
+    @ExceptionHandler(ResponseStatusException.class)
+    public ResponseEntity<String> exceptionHandler(ResponseStatusException exc){
+        return new ResponseEntity<>(exc.getReason(), exc.getStatus() );
     }
 
 }
