@@ -5,6 +5,8 @@ import me.ubmagh.billingservice.dtos.request.InvoiceRequestDTO;
 import me.ubmagh.billingservice.dtos.responses.InvoiceResponseDTO;
 import me.ubmagh.billingservice.entities.Customer;
 import me.ubmagh.billingservice.entities.Invoice;
+import me.ubmagh.billingservice.exceptions.CustomerNotFoundException;
+import me.ubmagh.billingservice.exceptions.InvoiceNotFoundException;
 import me.ubmagh.billingservice.mappers.InvoiceMapper;
 import me.ubmagh.billingservice.openfeign.CustomerRestClient;
 import me.ubmagh.billingservice.repositories.InvoiceRepository;
@@ -27,26 +29,46 @@ public class InvoiceServiceImpl implements InvoiceService {
 
 
     @Override
-    public InvoiceResponseDTO saveInvoice(InvoiceRequestDTO invoiceRequestDTO) {
+    public InvoiceResponseDTO saveInvoice(InvoiceRequestDTO invoiceRequestDTO) throws CustomerNotFoundException {
         Invoice invoice = invoiceMapper.fromInvoiceRequestDTO( invoiceRequestDTO );
+        Customer customer = customerRestClient.getCustomer(invoiceRequestDTO.getCusomerId());
+        if( customer==null ){
+            throw new CustomerNotFoundException( invoiceRequestDTO.getCusomerId() );
+        }
+        invoice.setId(UUID.randomUUID().toString());
+        invoice.setDate(new Date());
         Invoice savedInvoice = invoiceRepository.save( invoice );
-        savedInvoice.setId(UUID.randomUUID().toString());
-        savedInvoice.setDate(new Date());
-        // check if customer exist !!
         return this.getInvoice(savedInvoice.getId());
     }
 
     @Override
-    public InvoiceResponseDTO getInvoice(String Id) {
-        Invoice invoice = invoiceRepository.findById( Id).orElseGet(null);
+    public InvoiceResponseDTO getInvoice(String Id) throws InvoiceNotFoundException {
+        Invoice invoice = invoiceRepository.findById( Id).orElseThrow( ()-> new InvoiceNotFoundException(Id));
         Customer customer = customerRestClient.getCustomer( invoice.getCusomerId() );
         invoice.setCustomer(customer);
         return invoiceMapper.fromInvoice(invoice);
     }
 
     @Override
-    public List<InvoiceResponseDTO> invoicesByCustomer(String customerId) {
+    public List<InvoiceResponseDTO> invoicesByCustomer(String customerId) throws CustomerNotFoundException {
+        Customer customer = customerRestClient.getCustomer( customerId );
+        if( customer==null ){
+            throw new CustomerNotFoundException( customerId );
+        }
         List<Invoice> invoices = invoiceRepository.findByCusomerId(customerId);
-        return invoices.stream().map(inv->invoiceMapper.fromInvoice(inv)).collect(Collectors.toList());
+        return invoices.stream().map(i->{
+                    InvoiceResponseDTO dtoed = invoiceMapper.fromInvoice(i);
+                    dtoed.setCustomer( customerRestClient.getCustomer(i.getCusomerId()) );
+                    return dtoed;
+                }).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<InvoiceResponseDTO> getAllInvoices(){
+        return this.invoiceRepository.findAll().stream().map(i->{
+            InvoiceResponseDTO dtoed = invoiceMapper.fromInvoice(i);
+            dtoed.setCustomer( customerRestClient.getCustomer(i.getCusomerId()) );
+            return dtoed;
+        }).collect(Collectors.toList());
     }
 }

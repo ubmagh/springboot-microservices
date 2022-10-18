@@ -30,5 +30,9 @@ public class InvoiceRestApi {
         return invoiceService.saveInvoice(invoice);
     }
 
+    @GetMapping("/invoices")
+    public List<InvoiceResponseDTO> getInvoices(){
+        return invoiceService.getAllInvoices();
+    }
 
 }
