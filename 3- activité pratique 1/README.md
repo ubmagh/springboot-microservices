@@ -9,3 +9,13 @@
 
 
 > ⚠ Dockerized everything, but still cannot establish communication between running containers (static ports & adresses), maybe this is why i need a configuration provider service
+
+> project architecture : 
+
+<img src="./images/1.png" width="500px">
+
+<br>
+
+<img src="./images/2.png" width="500px">
+
+>
