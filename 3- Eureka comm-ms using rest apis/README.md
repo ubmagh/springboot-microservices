@@ -44,9 +44,20 @@ The [Docker-compose.yaml](./Docker-compose.yaml) is configured properly to run a
 
 > `docker-compose up`
 
+* running containers : 
+
+<p align="center">
+    <img src="./images/3.png">
+</p>
+
+<br>
+
+## Running microservices on kubernetes (K8s) :
 
 
 
+
+<br>
 <br>
 
 ## Project deep explanation (in french)  :
