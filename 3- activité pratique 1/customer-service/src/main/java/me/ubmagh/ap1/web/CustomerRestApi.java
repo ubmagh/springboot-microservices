@@ -16,7 +16,13 @@ import java.util.List;
 @RequestMapping("/api")
 @AllArgsConstructor
 public class CustomerRestApi {
+
     private CustomerService customerService;
+
+    @GetMapping("/health-beat")
+    public String checkHealth(){
+        return "Healthy Beat @CustomerSvc";
+    }
 
     @GetMapping("/customers")
     public List<CustomerResponseDTO> customersList(){

@@ -20,6 +20,11 @@ public class InvoiceRestApi {
 
     private InvoiceService invoiceService;
 
+    @GetMapping("/health-beat")
+    public String checkHealth(){
+        return "Healthy Beat @BillingSvc";
+    }
+
     @GetMapping("/invoices/{id}")
     public InvoiceResponseDTO getInvoice( @PathVariable String invoiceId){
         InvoiceResponseDTO invoice;
