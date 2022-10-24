@@ -15,5 +15,4 @@ public interface InvoiceService {
     InvoiceResponseDTO getInvoice( String Id) throws InvoiceNotFoundException;
     List<InvoiceResponseDTO> invoicesByCustomer(String customerId) throws CustomerNotFoundException;
     List<InvoiceResponseDTO> getAllInvoices();
-
 }

@@ -24,16 +24,16 @@
 
 ## Creating microservices 
 
-[👉 Create Eureka discovery service/micro-service](./eureka-discovery-service/)
+[👉 Creating Eureka discovery service/micro-service (& dockerizing it)](./eureka-discovery-service/)
 
 
-[👉 Create Customer micro-service](./customer-service/)
+[👉 Creating Customer micro-service (& dockerizing it)](./customer-service/)
 
 
-[👉 Create Billing micro-service](./billing-service/)
+[👉 Creating Billing micro-service (& dockerizing it)](./billing-service/)
 
 
-[👉 Create GateWay micro-service](./gateway/)
+[👉 Creating GateWay micro-service (& dockerizing it)](./gateway/)
 
 
 
