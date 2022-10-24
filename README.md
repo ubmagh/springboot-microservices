@@ -31,7 +31,7 @@
             <td> connecting synchronously microservices with eureka, and proxying them with a gateway 
             </td>
             <td>
-                <a href="./3- Eureka comm-ms using rest apis/">👉🔗</a> 
+                <a href="https://github.com/ubmagh/spring-microservices-communication-eureka" target="_blank">👉🔗</a> 
             </td>
         </tr>
     </tbody>
