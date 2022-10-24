@@ -36,8 +36,17 @@
 [👉 Creating GateWay micro-service (& dockerizing it)](./gateway/)
 
 
-
 <br>
+
+## Running microservices on docker compose :
+
+The [Docker-compose.yaml](./Docker-compose.yaml) is configured properly to run all the microservices together, note that microservices `CUSTOMER-SERVICE` and `BILLING-SERVICE` are not accessible directly, you need either to uncomment port mapping or pass through gateway, ex : http://localhost:8888/CUSTOMER-SERVICE/api/customers
+
+> `docker-compose up`
+
+
+
+
 <br>
 
 ## Project deep explanation (in french)  :
