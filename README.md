@@ -43,5 +43,14 @@
                 <a href="https://github.com/ubmagh/soap-service-example" target="_blank">👉🔗</a> 
             </td>
         </tr>
+        <tr>
+            <td> 5 </td>
+            <td> 
+				A multiconnector microservice : Soap, graphQl and Rest apis
+            </td>
+            <td>
+                <a href="https://github.com/ubmagh/spring-multi-connector-microservice" target="_blank">👉🔗</a> 
+            </td>
+        </tr>
     </tbody>
 </table>
