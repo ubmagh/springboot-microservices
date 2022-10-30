@@ -34,5 +34,14 @@
                 <a href="https://github.com/ubmagh/spring-microservices-communication-eureka" target="_blank">👉🔗</a> 
             </td>
         </tr>
+        <tr>
+            <td> 4 </td>
+            <td> 
+				Implement a Soap JaxWs server, and some clients
+            </td>
+            <td>
+                <a href="https://github.com/ubmagh/soap-service-example" target="_blank">👉🔗</a> 
+            </td>
+        </tr>
     </tbody>
 </table>
